@@ -27,4 +27,7 @@ See `output.txt`. Segment size, window size, prompt, and answer are example inpu
 
 MIT
 
-Read the write-up on Dev.to: https://dev.to/bobbyhalljr/google-launched-gemini-4-argon-lets-build-a-tiny-continuation-loop-in-typescript-5248
+## Write-up
+
+- Dev.to: https://dev.to/bobbyhalljr/google-launched-gemini-4-argon-lets-build-a-tiny-continuation-loop-in-typescript-5248
+- Substack: https://bobbyhalljr.substack.com/p/google-launched-gemini-4-argon-lets
