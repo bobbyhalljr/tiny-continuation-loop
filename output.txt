@@ -1,0 +1,31 @@
+=== Demo 1: the loop, through a thinking-only segment ===
+  seg 1  CONTINUATION prompt 163  thoughts 40  text  0  (thinking only, keep going)
+  seg 2  CONTINUATION prompt 203  thoughts 20  text 20
+  seg 3  CONTINUATION prompt 243  thoughts  0  text 40
+  seg 4  STOP         prompt 283  thoughts  0  text 27
+  done   4 segments, 87 text tokens, matches answer
+  billed prompt (sum of requests) 892, compact? true
+  actual context 163 + 60 + 87 = 310, compact? false
+
+=== Demo 2: 'please continue' changes the request ===
+  naive  error: 400: continuation token does not match this request
+  naive  stopped with 0 of 87 text tokens
+
+=== Demo 3: the stream drops mid-segment ===
+  naive  error: stream dropped
+  naive  107 text tokens for an 87-token answer
+  seg 1  CONTINUATION prompt 163  thoughts 40  text  0  (thinking only, keep going)
+  seg 2  CONTINUATION prompt 203  thoughts 20  text 20
+  drop   discarded 20 uncommitted tokens, retry from the same token
+  seg 3  CONTINUATION prompt 243  thoughts  0  text 40
+  seg 4  STOP         prompt 283  thoughts  0  text 27
+  loop   87 text tokens, matches answer, 5 requests
+
+=== Demo 4: the caller's cap runs out first ===
+  seg 1  CONTINUATION prompt 163  thoughts 40  text  0  (thinking only, keep going)
+  seg 2  CONTINUATION prompt 203  thoughts 20  text 20
+  seg 3  MAX_TOKENS   prompt 243  thoughts  0  text 20
+  status raise-cap after 40 text tokens, token kept
+  seg 4  CONTINUATION prompt 263  thoughts  0  text 40
+  seg 5  STOP         prompt 303  thoughts  0  text  7
+  resume done, 87 text tokens, matches answer
